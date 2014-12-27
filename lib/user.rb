@@ -9,9 +9,12 @@ class User
     @phone = phone
   end
 
-
   def place_order *items
     @restaurant.receive_order(*items)
   end
 
+  def menu_request
+    @restaurant.menu
   end
+
+end
