@@ -16,4 +16,8 @@ describe Restaurant do
     expect( lambda {restaurant.receive_order(:chicken)}).to raise_error(RuntimeError, "Sorry not in stock")
   end
 
+  it "should have a stocklist on initialization" do
+    expect(restaurant.stocklist).to include(:chips)
+  end
+
 end

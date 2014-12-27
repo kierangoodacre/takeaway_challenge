@@ -1,9 +1,16 @@
+require_relative 'restaurant'
+
 class User
 
-def place_order item
-	if item == "burger"
-    true
-  end
-end
+   # attr_reader :phone
 
-end
+  def initialize(restaurant)
+    @restaurant = restaurant
+  end
+
+
+  def place_order *items
+    @restaurant.receive_order(*items)
+  end
+
+  end
