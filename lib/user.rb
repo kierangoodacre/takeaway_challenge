@@ -2,10 +2,11 @@ require_relative 'restaurant'
 
 class User
 
-   # attr_reader :phone
+   attr_reader :phone
 
   def initialize(restaurant)
     @restaurant = restaurant
+    @phone = phone
   end
 
 
