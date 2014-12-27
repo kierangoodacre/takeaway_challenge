@@ -6,6 +6,11 @@ class Restaurant
 
   def initialize
     menu
+    bill
+  end
+
+  def bill
+    @bill = []
   end
 
   def menu
@@ -14,11 +19,16 @@ class Restaurant
 
   def receive_order *items
     raise "Sorry not in stock" if @menu.key?(*items) == false
-    :ordered if @menu.key?(*items) 
+    @bill << items
+    :ordered if @menu.fetch(*items) 
   end
 
   def stocklist
     @menu
+  end
+
+  def bill_total
+    @bill.inject(:+)
   end
 
 end

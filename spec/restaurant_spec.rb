@@ -22,7 +22,7 @@ describe Restaurant do
 
   it "should be able to provide total price upon receiving order" do
     restaurant.receive_order(:burger, :chips, :coke)
-    expect(restaurant.price_total).to eq(10.00)
+    expect(restaurant.bill_total).to eq(10.00)
   end
 
 end
