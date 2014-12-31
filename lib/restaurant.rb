@@ -22,10 +22,14 @@ class Restaurant
     raise "Sorry not in stock"
   end
 
+  def search_menu
+    lambda { |key|@menu.has_key?(key) }
+  end
+
   def receive_order(*items)
-    error unless items.all? { |key|@menu.has_key?(key) }
+    error unless items.all?(&search_menu)
     bill << menu.values_at(*items)
-    :ordered if items.all? { |key|@menu.has_key?(key) }
+    :ordered if items.all?(&search_menu)
   end
 
   def stocklist
