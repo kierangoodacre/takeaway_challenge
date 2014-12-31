@@ -2,12 +2,12 @@ require_relative 'user'
 
 class Restaurant
 
-  attr_reader :place
+  attr_reader :place, :menu, :bill
 
 
   def initialize
-    menu
-    bill
+    @menu = menu
+    @bill = bill 
   end
 
   def bill
@@ -15,11 +15,15 @@ class Restaurant
   end
 
   def menu
-    @menu = {"burger" => 5, "chips" => 2, "coke" => 1}
+    menu = {"burger" => 5, "chips" => 2, "coke" => 1}
+  end
+
+  def error
+    raise "Sorry not in stock"
   end
 
   def receive_order(*items)
-    raise "Sorry not in stock" unless items.all? { |key|@menu.has_key?(key) }
+    error unless items.all? { |key|@menu.has_key?(key) }
     bill << menu.values_at(*items)
     :ordered if items.all? { |key|@menu.has_key?(key) }
   end
@@ -29,7 +33,7 @@ class Restaurant
   end
 
   def bill_total
-    bill.inject(:+)
+    @bill.inject{|sum, num| sum + num}
   end
 
 end
