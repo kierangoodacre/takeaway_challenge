@@ -4,22 +4,24 @@ class Restaurant
 
   attr_reader :place
 
+
   def initialize
     menu
     bill
   end
 
   def bill
-    @bill = []
+    @bill ||= []
   end
 
   def menu
-    @menu = {"burger" => 5.00, "chips" => 2.00, "coke" => 1.00}
+    @menu = {"burger" => 5, "chips" => 2, "coke" => 1}
   end
 
   def receive_order(*items)
-    raise "Sorry not in stock" if items.all? { |key|@menu.has_key?(key) } == false
-    :ordered if @menu.fetch(*items) 
+    raise "Sorry not in stock" unless items.all? { |key|@menu.has_key?(key) }
+    :ordered if items.all? { |key|@menu.has_key?(key) }
+    @bill << menu.values_at(*items)
   end
 
   def stocklist
