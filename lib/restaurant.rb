@@ -20,8 +20,8 @@ class Restaurant
 
   def receive_order(*items)
     raise "Sorry not in stock" unless items.all? { |key|@menu.has_key?(key) }
+    bill << menu.values_at(*items)
     :ordered if items.all? { |key|@menu.has_key?(key) }
-    @bill << menu.values_at(*items)
   end
 
   def stocklist
@@ -29,7 +29,7 @@ class Restaurant
   end
 
   def bill_total
-    @bill.inject(:+)
+    bill.inject(:+)
   end
 
 end
