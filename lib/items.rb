@@ -1,6 +1,6 @@
 class Items
 
-	ITEMS = { burger: 10, chips: 10, coke:10 }
+	STOCKLIST = { burger: 10, chips: 10, coke:10 }
 
 	attr_reader :number
 
@@ -9,7 +9,7 @@ class Items
 	end
 
 	def self.method_missing name
-		return new ITEMS[name] if ITEMS[name]
+		return new STOCKLIST[name] if STOCKLIST[name]
 		super
 	end 
 
