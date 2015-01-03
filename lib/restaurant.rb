@@ -15,7 +15,7 @@ class Restaurant
   end
 
   def menu
-    menu = {"burger" => 5, "chips" => 2, "coke" => 1}
+    menu = { "burger" => 5, "chips" => 2, "coke" => 1}
   end
 
   def error
