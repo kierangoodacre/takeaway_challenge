@@ -26,9 +26,21 @@ class Restaurant
     lambda { |key|@menu.has_key?(key) }
   end
 
-  def receive_order(*items)
+  def error_message(*items)
     error unless items.all?(&search_menu)
+  end
+
+  def receive_order(*items)
+    error_message(*items)
+    add_to_bill(*items)
+    order_status(items)
+  end
+
+  def add_to_bill(*items)
     bill << menu.values_at(*items)
+  end
+
+  def order_status(items)
     :ordered if items.all?(&search_menu)
   end
 
