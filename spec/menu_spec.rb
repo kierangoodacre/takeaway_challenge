@@ -13,7 +13,7 @@ describe Menu do
   end
 
   it "items should have a price" do
-    expect(menu.item_prices).to include :burger => 5.00
+    expect(menu.item_prices).to include burger: 5.00
   end
 
 end

@@ -1,3 +1,5 @@
+require_relative 'restaurant'
+
 class Items
 
 	STOCKLIST = { burger: 10, chips: 10, coke:10 }
