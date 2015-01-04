@@ -1,6 +1,6 @@
 class Menu
 
-  attr_reader :item_prices
+  # attr_reader :item_prices
 
   def items
     [:burger, :chips, :coke]
