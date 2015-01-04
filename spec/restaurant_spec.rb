@@ -1,13 +1,20 @@
 require 'restaurant'
 require 'menu'
+require 'items'
 
 describe Restaurant do
 
+
+  let (:items) {Items.new}
   let (:menu) {Menu.new}
-  let (:restaurant) {Restaurant.new(menu)}
+  let (:restaurant) {Restaurant.new(menu, items)}
 
   it "should have todays menu on initialization" do
     expect(restaurant.todays_menu).to include burger: 5.00
+  end
+
+  it "should have a stocklist on initialization" do
+    expect(restaurant.stocklist).to include burger: 10
   end
 
   # it "should have a menu on initialization" do

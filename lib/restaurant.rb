@@ -1,16 +1,22 @@
 require_relative 'user'
 require_relative 'menu'
+require_relative 'items'
 
 class Restaurant
 
-  attr_reader :menu
+  attr_reader :menu, :items
 
-  def initialize menu
+  def initialize menu, items
     @menu = menu
+    @items = items
   end
 
   def todays_menu
     menu.item_prices
+  end
+
+  def stocklist
+    items.stocklist
   end
 
   # attr_reader :place, :menu, :bill

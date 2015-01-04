@@ -5,7 +5,7 @@ describe Items do
   let (:items) {Items.new}
 
   it "should contain a number of items" do
-    expect(Items.burger.number).to eq(10)
+    expect(items.stocklist).to include burger: 10
   end
 
 end
