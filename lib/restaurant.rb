@@ -23,9 +23,16 @@ class Restaurant
     lambda { |key|todays_menu.has_key?(key) }
   end
 
+  def order_status(items)
+    :ordered if items.all?(&search_menu)
+  end
+
   def receive_order(*items)
     error_message(*items)
-    :ordered if items.all?(&search_menu)
+    add_to_bill(*items)
+    order_status(items)
+    k = *items
+    stocklist.each {|k,v| stocklist[k] = v - 1}
   end
 
   def error
@@ -36,45 +43,14 @@ class Restaurant
     error unless items.all?(&search_menu)
   end
 
-  # attr_reader :place, :menu, :bill
+  def add_to_bill(*items)
+    @bill = todays_menu.values_at(*items)
+  end
 
 
-  # def initialize
-  #   @menu = menu
-  #   @bill = bill 
-  # end
+  def bill_total
+    @bill.inject(:+)
+  end
 
-  # def bill
-  #   @bill ||= []
-  # end
-
-  # def menu
-  #   menu = { "burger" => 5, "chips" => 2, "coke" => 1}
-  # end
-
-
-
-
-  # def receive_order(*items)
-  #   error_message(*items)
-  #   add_to_bill(*items)
-  #   order_status(items)
-  # end
-
-  # def add_to_bill(*items)
-  #   bill << menu.values_at(*items)
-  # end
-
-  # def order_status(items)
-  #   :ordered if items.all?(&search_menu)
-  # end
-
-  # def stocklist
-  #   @menu
-  # end
-
-  # def bill_total
-  #   @bill.inject{|sum, num| sum + num}
-  # end
 
 end
