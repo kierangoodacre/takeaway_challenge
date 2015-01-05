@@ -1,11 +1,13 @@
 require_relative 'restaurant'
+require_relative 'menu'
 
 class User
 
-   attr_reader :restaurant
+   attr_reader :restaurant, :menu
 
-  def initialize restaurant
+  def initialize restaurant, menu
     @restaurant = restaurant
+    @menu = menu
   end
 
   def place_order *items
@@ -13,7 +15,7 @@ class User
   end
 
   def menu_request
-    @restaurant.menu
+    menu.item_prices
   end
 
 end
