@@ -19,6 +19,23 @@ class Restaurant
     items.stocklist
   end
 
+  def search_menu
+    lambda { |key|todays_menu.has_key?(key) }
+  end
+
+  def receive_order(*items)
+    error_message(*items)
+    :ordered if items.all?(&search_menu)
+  end
+
+  def error
+    raise "Sorry not in stock"
+  end
+
+  def error_message(*items)
+    error unless items.all?(&search_menu)
+  end
+
   # attr_reader :place, :menu, :bill
 
 
@@ -35,17 +52,8 @@ class Restaurant
   #   menu = { "burger" => 5, "chips" => 2, "coke" => 1}
   # end
 
-  # def error
-  #   raise "Sorry not in stock"
-  # end
 
-  # def search_menu
-  #   lambda { |key|@menu.has_key?(key) }
-  # end
 
-  # def error_message(*items)
-  #   error unless items.all?(&search_menu)
-  # end
 
   # def receive_order(*items)
   #   error_message(*items)
