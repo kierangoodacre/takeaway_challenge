@@ -1,14 +1,17 @@
 require 'user'
 require 'restaurant'
+require 'items'
+require 'menu'
 
 describe User do
 
-
-  let (:restaurant) {Restaurant.new}
+	let (:items) {Items.new}
+  let (:menu) {Menu.new}
+  let(:restaurant) {Restaurant.new(menu, items)}
   let(:user) {User.new(restaurant)}
 
-  xit "should be able to order multiple items from menu" do
-    expect(user.place_order("burger", "chips")).to eq(:ordered)
+  it "should be able to order multiple items from menu" do
+    expect(user.place_order(:burger, :chips)).to eq(:ordered)
   end
 
   xit "should be able to request a menu" do

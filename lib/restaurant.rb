@@ -23,18 +23,18 @@ class Restaurant
     lambda { |key|todays_menu.has_key?(key) }
   end
 
-  def order_status(items)
+  def order_status items
     :ordered if items.all?(&search_menu)
   end
 
-  def receive_order(*items)
+  def receive_order *items
     error_message(*items)
     add_to_bill(*items)
     remove_from_stocklist(*items)
     order_status(items)
   end
 
-  def remove_from_stocklist(*items)
+  def remove_from_stocklist *items
     items.each {|item| value = stocklist[item]-1 ; stocklist.merge!(item => value)}
   end
 
@@ -42,11 +42,11 @@ class Restaurant
     raise "Sorry not in stock"
   end
 
-  def error_message(*items)
+  def error_message *items
     error unless items.all?(&search_menu)
   end
 
-  def add_to_bill(*items)
+  def add_to_bill *items
     @bill = todays_menu.values_at(*items)
   end
 
