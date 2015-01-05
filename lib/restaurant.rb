@@ -30,9 +30,12 @@ class Restaurant
   def receive_order(*items)
     error_message(*items)
     add_to_bill(*items)
+    remove_from_stocklist(*items)
     order_status(items)
-    k = *items
-    stocklist.each {|k,v| stocklist[k] = v - 1}
+  end
+
+  def remove_from_stocklist(*items)
+    items.each {|item| value = stocklist[item]-1 ; stocklist.merge!(item => value)}
   end
 
   def error
